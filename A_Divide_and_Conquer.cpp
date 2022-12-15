@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
+#define lli long long int
 #define pii pair<int, int>
 #define pll pair<long long, long long>
 #define vi vector<int>
@@ -9,6 +10,7 @@ using namespace std;
 #define si set<int>
 #define sc set<char>
 
+/* FUNCTIONS */
 #define f(i,s,e) for(long long int i=s;i<e;i++)
 #define cf(i,s,e) for(long long int i=s;i<=e;i++)
 #define rf(i,e,s) for(long long int i=e-1;i>=s;i--)
@@ -27,7 +29,8 @@ ll gcd(ll a,ll b) { if (b==0) return a; return gcd(b, a%b); }
 ll lcm(ll a,ll b) { return a/gcd(a,b)*b; }
 string to_upper(string a) { for (int i=0;i<(int)a.size();++i) if (a[i]>='a' && a[i]<='z') a[i]-='a'-'A'; return a; }
 string to_lower(string a) { for (int i=0;i<(int)a.size();++i) if (a[i]>='A' && a[i]<='Z') a[i]+='a'-'A'; return a; }
-bool prime(ll a) { if (a==1) return 0; for (int i=2;i<=round(sqrt(a));++i) if (a%i==0) return 0; return 1; }
+bool isprime(ll a) { if (a==1) return 0; for (int i=2;i<=round(sqrt(a));++i) if (a%i==0) return 0; return 1; }
+
 /*  All Required define Pre-Processors and typedef Constants */
 typedef long int int32;
 typedef unsigned long int uint32;
@@ -36,31 +39,33 @@ typedef unsigned long long int  uint64;
 
 void solve()
 {
-ll n;
-cin>>n;
-
-string s;
-cin>>s;
-ll maxseq=0,seq=0;
-ll count1=0,count0=0;
-char prev=s[0];
-f(i,0,n){
-    if(s[i]=='1') count1++;
-    else count0++;
-    
-    if(s[i]==prev) seq++;
-    else{
-        prev=s[i];
-maxseq=max(maxseq,seq);
-seq=1;
+    ll n;
+    cin >> n;
+    ll arr[n];
+    ll sum = 0;
+    f(i,0,n){
+        cin >> arr[i];
+        sum += arr[i];
     }
-}
+    int ans = 0;
+    if((sum & 1) == 0){
+        ans = 0;
+    }
+    else{
+        ll mn = INT_MAX;
+        f(i, 0, n){
+    int  count = 0, m = (int)(arr[i] % 2);
 
-maxseq=max(maxseq,seq);
-ll ans=max(count1*count0, maxseq*maxseq);
+    while((int)(arr[i]%2)==m){
+        count++;
+        arr[i] /= 2;
+    }
+    mn = min(mn, count);
+} ans = mn;
+    }
+   
 
-cout<<ans<<endl;
-
+    cout << ans << endl;
 }
 
 /* Main()  function */

@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
+#define lli long long int
 #define pii pair<int, int>
 #define pll pair<long long, long long>
 #define vi vector<int>
@@ -34,45 +35,46 @@ typedef unsigned long int uint32;
 typedef long long int int64;
 typedef unsigned long long int  uint64;
 
-void solve()
-{
-ll n;
-cin>>n;
-
-string s;
-cin>>s;
-ll maxseq=0,seq=0;
-ll count1=0,count0=0;
-char prev=s[0];
-f(i,0,n){
-    if(s[i]=='1') count1++;
-    else count0++;
-    
-    if(s[i]==prev) seq++;
-    else{
-        prev=s[i];
-maxseq=max(maxseq,seq);
-seq=1;
+ll pairsum(ll x){
+    if(x<=1){
+        return 0;
     }
+    return x*(x-1)/2;
 }
 
-maxseq=max(maxseq,seq);
-ll ans=max(count1*count0, maxseq*maxseq);
+void solve()
+{
+ll n,m;
+cin>>n>>m;
 
-cout<<ans<<endl;
 
+ll maxi;
+ll mini;
+
+if(m==1){
+    maxi=pairsum(n);
+    mini=maxi;
+}
+else{
+int d=n-(m-1);
+maxi=pairsum(d);
+
+ll t=n/m;
+ll rem=n%m;
+
+    mini=pairsum(t+1)*rem +pairsum(t)*(m-rem);
+
+}
+
+cout<<mini<<" "<<maxi<<endl;
 }
 
 /* Main()  function */
 int main(){
 
-int tc;
-int st=1;
-cin >> tc;
-while(st<=tc){
 solve();
- st++;
-}
+
+
 
 return 0;
 }

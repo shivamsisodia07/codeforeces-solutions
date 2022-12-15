@@ -36,43 +36,64 @@ typedef unsigned long long int  uint64;
 
 void solve()
 {
-ll n;
-cin>>n;
+    ll n;
+    cin>>n;
 
-string s;
-cin>>s;
-ll maxseq=0,seq=0;
-ll count1=0,count0=0;
-char prev=s[0];
-f(i,0,n){
-    if(s[i]=='1') count1++;
-    else count0++;
-    
-    if(s[i]==prev) seq++;
-    else{
-        prev=s[i];
-maxseq=max(maxseq,seq);
-seq=1;
+    ll arr[n];
+    f(i,0,n){
+        cin>>arr[i];
     }
+
+    int start=-1,end=-1;
+
+    f(i,0,n-1){
+
+if(arr[i]>arr[i+1]){
+
+if(start==-1){
+start=i+1;
+end=i+2;
+} 
+else end=i+2;
+    
+}
+}
+string ans="yes";
+if(start==-1 and end== -1){
+    start=1;
+    end=1;
+    ans="yes";
+}
+else{
+int l=start-1,r=end-1;
+while(l<r){
+swap(arr[l],arr[r]);
+l++;
+r--;
+}
 }
 
-maxseq=max(maxseq,seq);
-ll ans=max(count1*count0, maxseq*maxseq);
 
+f(i,0,n-1){
+if(arr[i]>arr[i+1]){
+    ans="no";
+    break;
+}
+}
+if(ans=="yes"){
 cout<<ans<<endl;
+cout<<start<<" "<<end;
+}else{
+    cout<<ans<<endl;
+}
 
 }
 
 /* Main()  function */
 int main(){
 
-int tc;
-int st=1;
-cin >> tc;
-while(st<=tc){
 solve();
- st++;
-}
+ 
 
 return 0;
 }

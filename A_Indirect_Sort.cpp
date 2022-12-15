@@ -36,46 +36,21 @@ typedef unsigned long long int  uint64;
 
 void solve()
 {
-    int n;
-    cin >> n;
-    int arr[n];
-    f(i,0,n){
-        cin >> arr[i];
-    }
-bool flag = true;
-f(i,0,n-2){
-    f(j,i+1,n-1){
-f(k,j+1,n){
-    if (arr[i] == arr[j] or arr[j]==arr[k] or arr[i]==arr[k]){
-        flag = false;
-    }
+int n;
+cin>>n;
 
-        if (arr[i] > arr[k])
-        {
-            arr[i] = arr[i] + arr[j];
-        }
-        else
-        {
-            swap(arr[j], arr[k]);
-        }
+int arr[n];
 
+f(i,0,n){
+    cin>>arr[i];
 }
-    }
+if(arr[0]!=1){
+    cout<<"No"<<endl;
+}else{
+    cout<<"Yes"<<endl;
 }
 
 
-f(i,1,n){
-    if(arr[i]<arr[i-1]){
-flag = false;
-    }
-}
-
-if(flag){
-    cout << "YES" << endl;
-}
-else{
-    cout << " NO" << endl;
-}
 }
 
 /* Main()  function */

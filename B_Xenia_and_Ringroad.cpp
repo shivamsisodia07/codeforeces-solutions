@@ -36,43 +36,33 @@ typedef unsigned long long int  uint64;
 
 void solve()
 {
-ll n;
-cin>>n;
-
-string s;
-cin>>s;
-ll maxseq=0,seq=0;
-ll count1=0,count0=0;
-char prev=s[0];
-f(i,0,n){
-    if(s[i]=='1') count1++;
-    else count0++;
-    
-    if(s[i]==prev) seq++;
-    else{
-        prev=s[i];
-maxseq=max(maxseq,seq);
-seq=1;
-    }
-}
-
-maxseq=max(maxseq,seq);
-ll ans=max(count1*count0, maxseq*maxseq);
-
-cout<<ans<<endl;
 
 }
 
 /* Main()  function */
 int main(){
 
-int tc;
-int st=1;
-cin >> tc;
-while(st<=tc){
-solve();
- st++;
+
+ll n; 
+ll m;
+cin>>n>>m;
+ll arr[m];
+
+f(i,0,m){
+    cin>>arr[i];
 }
+
+ll ans=0,prev=1;
+f(i,0,m){
+if(arr[i]>=prev){
+ans+= (arr[i]-prev);
+}
+else{
+    ans+= n - (prev - arr[i]);
+}
+prev=arr[i];
+}
+cout<< ans<<endl;
 
 return 0;
 }

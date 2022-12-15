@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
+#define lli long long int
 #define pii pair<int, int>
 #define pll pair<long long, long long>
 #define vi vector<int>
@@ -9,6 +10,7 @@ using namespace std;
 #define si set<int>
 #define sc set<char>
 
+/* FUNCTIONS */
 #define f(i,s,e) for(long long int i=s;i<e;i++)
 #define cf(i,s,e) for(long long int i=s;i<=e;i++)
 #define rf(i,e,s) for(long long int i=e-1;i>=s;i--)
@@ -27,7 +29,13 @@ ll gcd(ll a,ll b) { if (b==0) return a; return gcd(b, a%b); }
 ll lcm(ll a,ll b) { return a/gcd(a,b)*b; }
 string to_upper(string a) { for (int i=0;i<(int)a.size();++i) if (a[i]>='a' && a[i]<='z') a[i]-='a'-'A'; return a; }
 string to_lower(string a) { for (int i=0;i<(int)a.size();++i) if (a[i]>='A' && a[i]<='Z') a[i]+='a'-'A'; return a; }
-bool prime(ll a) { if (a==1) return 0; for (int i=2;i<=round(sqrt(a));++i) if (a%i==0) return 0; return 1; }
+bool isprime(ll a) { if (a==1) return 0; for (int i=2;i<=round(sqrt(a));++i) if (a%i==0) return 0; return 1; }
+// vector<bool> SieveOfEratosthenes(ll m) {vector<bool>prime(m + 1);memset(prime, true, sizeof(prime));for (ll p = 2; p * p <= m; p++) {if (prime[p] == true) {for (ll i = p * p; i <= m; i += p)prime[i] = false;}}return prime;}
+// Function to calculate distance
+float distance(int x1, int y1, int x2, int y2)
+{
+    return sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2) * 1.0);
+}
 /*  All Required define Pre-Processors and typedef Constants */
 typedef long int int32;
 typedef unsigned long int uint32;
@@ -36,43 +44,27 @@ typedef unsigned long long int  uint64;
 
 void solve()
 {
-ll n;
-cin>>n;
-
-string s;
-cin>>s;
-ll maxseq=0,seq=0;
-ll count1=0,count0=0;
-char prev=s[0];
-f(i,0,n){
-    if(s[i]=='1') count1++;
-    else count0++;
-    
-    if(s[i]==prev) seq++;
-    else{
-        prev=s[i];
-maxseq=max(maxseq,seq);
-seq=1;
+ long long r,x,y,a,b,s=0;
+    cin>>r>>x>>y>>a>>b;
+    long double dist=sqrt((x-a)*(x-a) + (y-b)*(y-b));
+    if(x==a && y==b) {
+        cout<<s;
+    } else {
+        while((dist-s*(2*r))>2*r) {
+            s++;
+        }
+        cout<<s+1;
     }
-}
 
-maxseq=max(maxseq,seq);
-ll ans=max(count1*count0, maxseq*maxseq);
-
-cout<<ans<<endl;
 
 }
 
 /* Main()  function */
 int main(){
+  cout<<setprecision(8);
 
-int tc;
-int st=1;
-cin >> tc;
-while(st<=tc){
 solve();
- st++;
-}
+ 
 
 return 0;
 }
