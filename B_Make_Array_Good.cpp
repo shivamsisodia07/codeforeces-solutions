@@ -39,56 +39,41 @@ typedef unsigned long long int  uint64;
 
 void solve()
 {
-    ll n, m, k;
-    cin >> n >> m >> k;
-
-    ll col[m];
-    f(i,0,m) cin >> col[i];
-    
-    ll maxfreq,maxele;
-    if(n%k==0){
-        maxfreq = n /k;
-        maxele = k;
+    ll n;
+    cin >> n;
+   
+ vector<pair<ll, ll>> a, ans;
+    f(i,1,n+1){
+        ll j;
+        cin >> j;
+        a.push_back({j, i});
     }
-    else{
-        maxfreq = (n / k) + 1;
-        maxele = n%k;
+
+    sort(a.begin(), a.end());
+
+    f(i,1,n){
+        if(a[i].first % a[i-1].first != 0){
+            ll x;
+            x = (((a[i].first / a[i - 1].first) + 1) * a[i-1].first ) - a[i].first;
+            ans.push_back({a[i].second, x});
+            a[i].first += x;
+        }
     }
-    bool flag = true;
-    int count = 0;
-    f(i, 0, m)
-    {
-
-        if (col[i]>maxfreq){
-            flag = false;
-            break;
-        }
-        else if(col[i]==maxfreq){
-            count++;
-        }
-        if(count>maxele){
-            flag = false;
-            break;
-        }
-
-
-}
-if(flag){
-        cout << "YES" << endl;
-}
-else{
-        cout << "NO" << endl;
+    cout << ans.size() << endl;
+    f(i,0,ans.size()){
+        cout << ans[i].first << " " << ans[i].second << endl;
+    }
 }
 
-}
 /* Main()  function */
 int main(){
-ll t;
-cin >> t;
 
+ll t;
+cin>>t;
 while(t--){
 solve();
 
 }
+
 return 0;
 }

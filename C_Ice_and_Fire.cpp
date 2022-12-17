@@ -37,58 +37,39 @@ typedef unsigned long int uint32;
 typedef long long int int64;
 typedef unsigned long long int  uint64;
 
+
+
 void solve()
 {
-    ll n, m, k;
-    cin >> n >> m >> k;
+    ll n;
+    cin >> n;
+    string s;
+    cin >> s;
 
-    ll col[m];
-    f(i,0,m) cin >> col[i];
-    
-    ll maxfreq,maxele;
-    if(n%k==0){
-        maxfreq = n /k;
-        maxele = k;
+    char v = s[0];
+    int a = 1,b=1;
+
+    f(i,0,n-1){
+        b++;
+        if(v==s[i]){
+            cout << a << " ";
+        }
+        else{
+            a = b - 1;
+            v = s[i];
+            cout << a << " ";
+        }
     }
-    else{
-        maxfreq = (n / k) + 1;
-        maxele = n%k;
-    }
-    bool flag = true;
-    int count = 0;
-    f(i, 0, m)
-    {
-
-        if (col[i]>maxfreq){
-            flag = false;
-            break;
-        }
-        else if(col[i]==maxfreq){
-            count++;
-        }
-        if(count>maxele){
-            flag = false;
-            break;
-        }
-
-
-}
-if(flag){
-        cout << "YES" << endl;
-}
-else{
-        cout << "NO" << endl;
 }
 
-}
 /* Main()  function */
 int main(){
-ll t;
-cin >> t;
-
-while(t--){
-solve();
-
+    ll t;
+    cin >> t;
+    while (t--)
+    {
+        solve();
+        cout << endl;
 }
 return 0;
 }
