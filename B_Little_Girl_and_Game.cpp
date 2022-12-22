@@ -37,9 +37,27 @@ typedef unsigned long int uint32;
 typedef long long int int64;
 typedef unsigned long long int  uint64;
 
+int dis = 0;
+bool ispalindrome(vector<int>&arr){
+
+    int count = 0;
+
+    for (int i = 0; i < 26;i++){
+
+        if(arr[i]>0){
+            dis++;
+        }
+if(arr[i]%2!=0){
+    count++;
+}
+    }
+
+    return count <= 1;
+}
+
 void solve()
 {
-    int arr[26];
+    vector<int> arr(26, 0);
     string s;
     cin >> s;
     int n = s.size();
@@ -47,12 +65,20 @@ void solve()
 f(i,0,n){
     arr[s[i] - 'a']++;
 }
-    if(n%2!=0){
-        cout << "First" << endl;
-    }
-    else{
-        cout << "Second" << endl;
-    }
+
+
+if(ispalindrome(arr))
+    cout << "First" << endl;
+
+else{
+if((n-1)%2!=0)
+cout << "Second" << endl;
+
+else
+    cout << "First" << endl;
+
+}
+   
 }
 
 /* Main()  function */
