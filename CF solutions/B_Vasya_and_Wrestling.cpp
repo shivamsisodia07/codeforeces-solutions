@@ -39,48 +39,64 @@ typedef unsigned long long int  uint64;
 
 void solve()
 {
-    ll n;cin>>n;
-int A=0,B=0;
-int countA=0,countB=0;
-bool flag=true;
-    for(int i=0;i<n;i++){
-int a;cin>>a;
-cin>>a;
+    ll n;
+    cin >> n;
+    ll lex = 0,scoreA=0,scoreB=0;
+    bool f = true;
+    vector<int> a, b;
 
-if(a>0){
-countA++;
-A+=a;
-
+    f(i,0,n){
+        ll ai;
+        cin >> ai;
+if(i==n-1){
+    if(ai<0) f = false;
 }
-else{
-countB++;
-B+=-1*a;
-}
-
-if(i==n-1 and a<0){
-flag=false;
-}
+        if(ai>0){
+            a.push_back(ai);
+            scoreA += ai;
+        }
+        else{
+            b.push_back(-ai);
+            scoreB = scoreB+ (-1*ai);
+        }
     }
 
 
-if(A>B){
-cout<<"first"<<endl;
+if(scoreA>scoreB){
+        cout << "first" << endl;
 }
-else if(B>A){
-cout<<"second"<<endl;
-}
-else if(countA>countB){
-    cout<<"first"<<endl;
-}
-else if(countA<countB){
-cout<<"second"<<endl;
+else if(scoreB>scoreA){
+ cout << "second" << endl;
 }
 else{
-    if(flag) cout<<"first"<<endl;
-    else cout<<"second"<<endl;
-    
+
+ for (int i = 0; i < a.size() and i< b.size();i++){
+if(a[i]>b[i]){
+        lex = 1;break;
+}
+if(a[i]<b[i]){
+        lex = 2;break;
 }
 
+ }
+
+ if(lex!=0){
+
+if(lex==1){
+        cout << "first" << endl;
+}
+else{
+        cout << "second" << endl;
+}
+ }
+ else{
+if(f){
+      cout << "first" << endl;
+}else{
+      cout << "second" << endl;
+}
+ }
+}
 }
 
 /* Main()  function */
@@ -88,6 +104,7 @@ int main(){
 
 
 solve();
+
 
 
 return 0;
