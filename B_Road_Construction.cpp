@@ -39,35 +39,39 @@ typedef unsigned long long int  uint64;
 
 void solve()
 {
-    ll n,ans=2,count=2;
-   cin >> n;
-    vector<ll> v(n);
+    ll n, m;
+    cin >> n >> m;
+    vector<ll> city(n , 0);
 
-    
-    f(i,0,n){
-        cin >> v[i];
+
+    f(i,0,m){
+        ll a, b;
+        cin >> a >> b;
+
+        city[a - 1] = 1;
+        city[b - 1] = 1;
     }
-    // sort(v.begin(), v.end());
-if(n!=1 and n!=2){
-f(i,2,n){
+    ll head = -1;
+    f(i,0,n){
 
-if(v[i]== v[i-1]+v[i-2]){
-    count++;
-}
-else{
-    ans = max(ans, count);
-    count = 2;
-}
-
-} 
-ans = max(ans, count);
-
-cout << ans << endl;
-}else{
-cout << n << endl;
-}
+        if(city[i]==0){
+            head = i;
+        }
+    }
 
 
+    if(head==-1){
+        cout << "NO" << endl;
+    }
+    else{
+        cout << n - 1 << endl;
+
+        f(i,0,n){
+            if(i!=head){
+                cout << head+1 << " " << i+1 << endl;
+            }
+        }
+    }
 }
 
 /* Main()  function */
