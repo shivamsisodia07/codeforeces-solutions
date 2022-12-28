@@ -1,10 +1,17 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+
 #define ll long long
 #define lli long long int
 #define pii pair<int, int>
 #define pll pair<long long, long long>
+#define vi vector<int>
+#define vll vector<long long>
+#define mii map<int, int>
+#define si set<int>
+#define sc set<char>
+
 
 /* FUNCTIONS */
 #define f(i,s,e) for(long long int i=s;i<e;i++)
@@ -36,14 +43,16 @@ typedef long long int int64;
 typedef unsigned long long int  uint64;
 
 
-//   vector<bool> seiveOfEr(int n){
-//  vector<bool> is_prime(n+1, true);
-//  is_prime[0] = is_prime[1] = false;
-//  for (int i = 2; i * i <= n; i++) {
-//   if (is_prime[i]) {
-//   for (int j = i * i; j <= n; j += i)
-//   is_prime[j] = false;
-//    }}
+  vector<bool> seiveOfEr(int n){
+ vector<bool> is_prime(n+1, true);
+ is_prime[0] = is_prime[1] = false;
+ for (int i = 2; i * i <= n; i++) {
+  if (is_prime[i]) {
+  for (int j = i * i; j <= n; j += i)
+  is_prime[j] = false;
+   }}
+return is_prime;
+}
 
 
 int fastpower(int a,int b,int n){
@@ -59,55 +68,40 @@ a = (a%n * a%n)%n;b /= 2;
  return ans;
  }
 
+
 void solve()
 {
- ll n;
- cin >> n;
- vector<ll> arr(n);
- f(i,0,n){
+ ll n, k;
+ cin >> n >> k;
+
+ ll arr[n + 10];
+ arr[0] = 0;
+
+ f(i,1,n+1){
 cin >> arr[i];
  }
- map<int, vector<int>> mp;
 
- f(i,0,n){
-mp[arr[i]].push_back(i);
+ f(i,k+1,n+1){
+arr[i] += arr[i - k];
  }
 
- set<pair<int, int>> st;
- for(auto it: mp)
- {
-if (it.second.size() == 1)
-{
-    st.insert({it.first, 0});
-}
-else if(it.second.size()==2){
-    st.insert({it.first, it.second[1] - it.second[0]});
-}
-else{
-    int cd = it.second[1] - it.second[0];
-    bool f = true;
-    for (int i = 2; i < it.second.size();i++){
+ int ans = n;
+ int val = INT_MAX;
 
-      if(it.second[i]-it.second[i-1]!=cd){
-        f = false;break;
-      }
+ for (int i = n; i > n - k;i--){
+    if(arr[i]<=val){
+     val=arr[i];
+     ans = i;
     }
-
-    if(f){
-      st.insert({it.first, cd});
-    }
-}
-}
-
-cout << st.size() << endl;
-for(auto it:st){
-cout << it.first << " " << it.second << endl;
-}
+ }
+ ans=ans % k;
+ if (ans == 0){
+    ans = k;
+ }
+    cout << ans << endl;
 }
 /* Main()  function */
 int main(){
-
 solve();
-
 return 0;
 }
