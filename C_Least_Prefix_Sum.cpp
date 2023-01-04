@@ -29,16 +29,22 @@ void solve()
         l = min(l, presum[i]);
 }
 
-if(l=presum[k-1]){
+if(l>=presum[k-1]){
         cout << 0;
 }
 
 else{
-f(i,0,k){
-    if(arr[i]>0)
-}
+        priority_queue<int> pq;
+        f(i, 0, m)
+        {
+            pq.push()
 
+    }
+        int d = presum[k - 1] - l;
 
+        while(d--){
+
+        }
 }
 
 
