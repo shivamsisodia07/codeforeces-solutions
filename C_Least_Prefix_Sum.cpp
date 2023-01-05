@@ -1,61 +1,80 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define ll long long
-#define f(i,s,e) for(long long int i=s;i<e;i++)
-#define rf(i,e,s) for(long long int i=e-1;i>=s;i--)
-#define pb push_back
-#define eb emplace_back
-#define MOD 1000000007
-#define PI  3.14159265
-#define prt(x) cout << (x);
-void solve()
+#define ll long long 
+int main()
 {
-    ll n, k;
-    cin >> n >> k;
-
-    vector<ll> arr(n);
-    vector<ll> presum(n);
-
-    ll sum = 0;
-    f(i,0,n){
-        cin >> arr[i];
-        sum += arr[i];
-        presum.push_back(sum);
-    }
-
-    ll l = INT_MAX;
-    f(i, 0, n)
+    ll t, n, m, i, j, ans, last;
+    
+    cin>>t;
+    
+    for(;t--;)
     {
-        l = min(l, presum[i]);
-}
-
-if(l>=presum[k-1]){
-        cout << 0;
-}
-
-else{
-        priority_queue<int> pq;
-        f(i, 0, m)
+        cin>>n>>m;
+        ans=0;
+        
+        priority_queue<pair<ll, ll>> q;
+        
+        ll a[n+1], p1[n+1], p2[n+1], b[n+1];
+        
+        for(i=1; i<=n; i++)
         {
-            pq.push()
-
-    }
-        int d = presum[k - 1] - l;
-
-        while(d--){
-
+            cin>>a[i];
+            b[i]=a[i];
         }
-}
-
-
-}
-int main(){
-ios::sync_with_stdio(0); cin.tie(0);
-ll t;
-cin>>t;
-while(t--){
-solve();
-cout<<endl;
-}
-return 0;
+        
+        if(a[m]>0 && m!=1)
+        {
+            a[m]=-a[m];
+            b[m]=-b[m];
+            ans++;
+        }
+        
+        
+        p1[1]=a[1];
+        p2[1]=b[1];
+        
+        for(i=2; i<=n; i++)
+        {
+            p2[i]=p2[i-1]+b[i];
+            p1[i]=p1[i-1]+a[i];
+        }
+        
+        for(i=m-1; i>=1; i--)
+        {
+            while(p1[i]<p1[m])
+            {
+                p1[m]=p1[m]-2*(q.top().first);
+                q.pop();
+                ans++;
+            }
+            if(a[i]>0)
+            {
+                q.push({a[i], i});
+            }
+        }
+        
+        while(q.empty()==false)
+        {
+            q.pop();
+        }
+        
+        for(i=m+1; i<=n; i++)
+        {
+            if(a[i]<0)
+            {
+                q.push({-a[i], i});
+            }
+            while(p2[i]<p2[m])
+            {
+                p2[m]=p2[m]-2*(q.top().first);
+                q.pop();
+                ans++;
+            }
+            
+        }
+        
+        
+        cout<<ans<<"\n";
+        
+    }
 }
