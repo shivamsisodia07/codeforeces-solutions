@@ -1,60 +1,60 @@
-#include <bits/stdc++.h>
+
+#include<iostream>
+#include<cstdio>
+#include <math.h> 
+#include<string>
+#include<vector>
+#include<map>
+#include<unordered_map>
+#include<set>
+#include<unordered_set>
+
 using namespace std;
-#define ll long long
-#define f(i,s,e) for(long long int i=s;i<e;i++)
-#define rf(i,e,s) for(long long int i=e-1;i>=s;i--)
-#define pb push_back
-#define eb emplace_back
-#define MOD 1000000007
-#define PI  3.14159265
-#define prt(x) cout << (x);
-void solve()
-{
-    ll n,k;
-    cin >> n >> k;
+#define ll long long 
+int size = 1000;
+ll N;
 
-    vector<vector<int>>arr(n,vector<int>(k));
-
-    for (int i = 0; i < n;i++){
-        for (int j = 0; j < k;j++){
-            cin >> arr[i][j];
-        }
-    }
-    map<pair<int, int>, int >st;
-    for (int i = 0; i < k-1;i++){
-        for (int j = i+1; j < k;j++){
-            st[{arr[0][i], arr[0][j]}]++;
-        }
-    }
-
-    for (int i = 1; i < n;i++){
-
-        for (int j = 0; j < k-1;j++){
-
-            for (int l = j+1; l < k;l++){
-          if (st[arr[i][j], arr[i][l]])
-                {
-                    st[arr[i]]
-                }
-            }
-               
-        }
-    }
+void setIO(string s) {
+	freopen((s+".in").c_str(),"r",stdin);
+	freopen((s+".out").c_str(),"w",stdout);
 }
-int main(){
-ios::sync_with_stdio(0); cin.tie(0);
-ll t;
-cin>>t;
-while(t--){
-solve();
-cout<<endl;
+
+bool compare(ll one, ll two) {
+	if (one >= two) return true;
+	return false;
 }
-return 0;
+
+void solve (ll M) {
+	ll ranking[N+1][M+1];
+	
+	for (ll i = 0; i < N; ++i) {  
+		for (ll j = 0; j < M; ++j) {
+			ll input; cin >> input;
+			ranking[i][input] = j; 
+		}
+	}
+	ll ans = 0;
+	for (ll i = 1; i <= M; ++i) {
+		for (ll j =i+1; j <= M; ++j) {
+			
+			ll one = ranking[0][i], two = ranking[0][j]; 
+			bool target = compare(one, two);
+			bool consist = true;
+			for (ll k = 1; k < N; ++k) {
+			
+				if (compare(ranking[k][i], ranking[k][j]) != target) consist = false;			
+			}
+			if (consist) ans += 1;
+		}
+	}	
+ 	cout << ans;		
 }
-/* stuff you should look for
-* int overflow, array bounds
-* special cases (n=1?)
-* do smth instead of nothing and stay organized
-* WRITE STUFF DOWN
- * DON'T GET STUCK ON ONE APPROACH
- */
+
+int main() {
+    ios_base::sync_with_stdio(0);
+    // setIO("gymnastics");
+    ll M;
+    cin >> N >> M;
+    solve(M);
+    return 0;
+}
