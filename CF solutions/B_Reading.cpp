@@ -10,28 +10,37 @@ using namespace std;
 #define prt(x) cout << (x);
 void solve()
 {
-    ll n,k;
-    cin >> n>>k;
- priority_queue<pair<int,int>> pq;
+    ll n, k;
+    cin >> n >> k;
+
     vector<int> arr(n, 0);
+    vector<int> ans;
+    int mini = INT_MAX;
+    priority_queue<pair<int,int>> pq;
     f(i,0,n){
         cin >> arr[i];
-        pq.push({arr[i],i});
+        pq.push({arr[i], i + 1});
     }
 
-   while(!pq.empty() and k--){
-        cout << pq.top().second+1 << " ";
+while(k--){
+        pair<int, int> p = pq.top();
         pq.pop();
-   }
-
-   cout << "\n";
+        ans.push_back(p.second);
+        mini = min(mini,p.first);
+}
+sort(ans.begin(), ans.end());
+cout << mini << "\n";
+f(i,0,ans.size()){
+        cout << ans[i] << " ";
+}
+cout << "\n";
 }
 int main(){
 ios::sync_with_stdio(0); cin.tie(0);
-ifstream cin("input.txt");
-ofstream cout("output.txt");
-solve();
+	freopen("input.txt", "r", stdin);
+	freopen("output.txt", "w", stdout);
 
+solve();
 
 return 0;
 }
