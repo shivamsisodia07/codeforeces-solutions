@@ -17,25 +17,27 @@ int solve(int i,int n,vector<int>&arr,vector<int>&dp)
 }
 
 int main(){
- long long n;cin>>n;
+ long long n,k;cin>>n>>k;
   vector<int>arr(n+2,0);
   
   for(int i=0;i<n;i++)
   {
   cin>>arr[i];
   }
-  vector<int> dp(n + 2, -1);
+  vector<int> dp(n + 2, INT_MAX);
   dp[n - 1] = 0;
+  
   for (int i = n-2; i >=0;i--){
 
- int a = INT_MAX, b = INT_MAX;
- if(i+1<n) a = dp[i + 1] + abs(arr[i] - arr[i + 1]);
- if(i+2<n) b = dp[i + 2] + abs(arr[i] - arr[i + 2]);
-
-  dp[i]=min(a,b);
-
+//   int mini = INT_MAX;
+//   int a = INT_MAX, b = INT_MAX;
+  for (int j = 1; j <= k;j++){
+ if (i + j < n){
+   int a = dp[i + j] + abs(arr[i] - arr[i + j]);
+ dp[i] = min(dp[i], a);
+ }   
   }
-
+  }
   cout <<  dp[0]<< "\n";
   return 0;
 }
