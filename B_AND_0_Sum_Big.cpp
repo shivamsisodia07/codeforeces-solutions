@@ -8,54 +8,15 @@ using namespace std;
 #define MOD 1000000007
 #define PI  3.14159265
 #define prt(x) cout << (x);
-
 void solve()
 {
-    string s;
-    cin >> s;
-    int ans = 10;
-    int a = 0, b = 0,counta=0,countb=0;
-
-    for (int i = 0; i < 10;i++){
-
-
-if(i&1==1){
-if(s[i]=='?' or s[i]=='1'){
-    a++;
-}
-}
-else{
-if(s[i]=='1'){
-    b++;
-}
-countb++;
-}
-
-if(a>b+5-countb){
-    ans = min(ans, i+1);
-}
+    ll n, k;
+    cin >> n >> k;
+    ll ans = 1;
+    for (int i = 0; i < k;i++){
+        ans=(ans*n)%MOD;
     }
-    // cout << ans << " ";
-    a = 0, b = 0;
-    for (int i = 0; i < 10;i++){
-
-if(i&1==1){
-if( s[i]=='1'){
-    a++;
-}
-counta++;
-}
-else{
-if(s[i]=='?' or s[i]=='1'){
-    b++;
-}
-}
-if(b>a+5-counta){
-    ans = min(ans, i+1);
-}
-    }
-
-        cout << ans;
+    cout << ans;
 }
 int main(){
 ios::sync_with_stdio(0); cin.tie(0);

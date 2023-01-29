@@ -8,54 +8,43 @@ using namespace std;
 #define MOD 1000000007
 #define PI  3.14159265
 #define prt(x) cout << (x);
-
 void solve()
 {
-    string s;
-    cin >> s;
-    int ans = 10;
-    int a = 0, b = 0,counta=0,countb=0;
-
-    for (int i = 0; i < 10;i++){
+    ll n, h;
+    cin >> n >> h;
 
 
-if(i&1==1){
-if(s[i]=='?' or s[i]=='1'){
-    a++;
-}
-}
-else{
-if(s[i]=='1'){
-    b++;
-}
-countb++;
-}
+    vector<int> damage(n);
+    vector<int> diff;
 
-if(a>b+5-countb){
-    ans = min(ans, i+1);
-}
+    f(i,0,n){
+        cin >> damage[i];
     }
-    // cout << ans << " ";
-    a = 0, b = 0;
-    for (int i = 0; i < 10;i++){
-
-if(i&1==1){
-if( s[i]=='1'){
-    a++;
-}
-counta++;
-}
-else{
-if(s[i]=='?' or s[i]=='1'){
-    b++;
-}
-}
-if(b>a+5-counta){
-    ans = min(ans, i+1);
-}
+    
+    f(i,1,n){
+        diff.push_back(damage[i] - damage[i - 1]-1);
     }
+if(n==1){
+    cout<<h;
+    return;
+}
+    int sum = 0;
+    f(i,1,h){
+        sum = 0;
+        f(j,0,diff.size()){
+            if(diff[j]<=i){
+                sum += diff[j];
+            }
+            else{
+                sum += i-1;
+            }
+        }
 
-        cout << ans;
+        if(sum+i>=h-n+1){
+            cout << i;
+            return;
+        }
+    }
 }
 int main(){
 ios::sync_with_stdio(0); cin.tie(0);

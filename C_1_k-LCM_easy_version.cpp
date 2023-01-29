@@ -9,53 +9,35 @@ using namespace std;
 #define PI  3.14159265
 #define prt(x) cout << (x);
 
+long long gcd(long long int a, long long int b)
+{
+  if (b == 0)
+    return a;
+  return gcd(b, a % b);
+}
+
+long long lcm(int a, int b)
+{
+    return (a / gcd(a, b)) * b;
+}
 void solve()
 {
-    string s;
-    cin >> s;
-    int ans = 10;
-    int a = 0, b = 0,counta=0,countb=0;
+    ll n, k;
+    cin >> n >> k;
 
-    for (int i = 0; i < 10;i++){
-
-
-if(i&1==1){
-if(s[i]=='?' or s[i]=='1'){
-    a++;
-}
-}
-else{
-if(s[i]=='1'){
-    b++;
-}
-countb++;
-}
-
-if(a>b+5-countb){
-    ans = min(ans, i+1);
-}
+    if(n&1==1){
+    cout << n / 2 << " " << n / 2 << " "<< 1;
+    return;
     }
-    // cout << ans << " ";
-    a = 0, b = 0;
-    for (int i = 0; i < 10;i++){
-
-if(i&1==1){
-if( s[i]=='1'){
-    a++;
-}
-counta++;
-}
-else{
-if(s[i]=='?' or s[i]=='1'){
-    b++;
-}
-}
-if(b>a+5-counta){
-    ans = min(ans, i+1);
-}
+    else{
+        if((n/2)&1==1){
+            cout << 2 << " " << (n - 2) / 2 <<" "<<(n - 2) / 2;
+        }
+        else{
+cout << n/ 2 << " " << n/4 << " " << n/4;
+        }
+    
     }
-
-        cout << ans;
 }
 int main(){
 ios::sync_with_stdio(0); cin.tie(0);
