@@ -21,17 +21,19 @@ void solve()
             zeros++;
         }
     }
-if(n==1){
-   cout << "BOB";
-   return;
-}
-if(zeros%2==0){
+    if(zeros==0){
+        cout << "DRAW";
+    }
+    if (zeros==1)
+    {
         cout << "BOB";
-}
-else{
-        cout << "ALICE";
-}
+        return;}
 
+if(zeros%2){
+    cout << "ALICE";
+    return;
+}
+   cout << "BOB";
 }
 int main(){
 ios::sync_with_stdio(0); cin.tie(0);
