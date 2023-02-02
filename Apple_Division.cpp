@@ -8,45 +8,37 @@ using namespace std;
 #define MOD 1000000007
 #define PI  3.14159265
 #define prt(x) cout << (x);
+ll ans = INT_MAX;
+
+void sol(ll i,ll n,ll sum,vector<ll>&v,ll s){
+
+    if(i==n){
+        ans = min(ans, abs(2*sum-s));
+        return;
+    }
+    sol(i + 1, n, sum + v[i], v,s);
+    sol(i + 1, n, sum, v,s);
+    return;
+}
+
 void solve()
 {
-    ll n, h;
-    cin >> n >> h;
-
-
-    vector<ll> damage(n);
+    ll n;
+    cin >> n;
+    vector<ll> v(n);
+    ll sum = 0;
     f(i,0,n){
-        cin >> damage[i];
+        cin >> v[i];
+        sum += v[i];
     }
-
-    ll l = 1,r= 1e18,mid;
-
-    ll sum;
-    while(l<=r){
-        mid = l + (r - l) / 2;
-        sum = mid;
-
-        for (int i = 0; i < n - 1;i++){
-            sum += min(mid, damage[i + 1] - damage[i]);
-        }
-            if (sum < h)
-            {
-                l = mid + 1;
-            }
-            else{
-            r = mid - 1;
-        }
-    }
-
-    cout << r + 1;
+    sol(0, n, 0,v,sum);
+    cout << ans;
 }
-    
-
 int main(){
 ios::sync_with_stdio(0); cin.tie(0);
 ll t;
-// t = 1;
-cin>>t;
+// cin>>t;
+t = 1;
 while(t--){
 solve();
 cout<<endl;
