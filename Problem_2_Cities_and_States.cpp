@@ -10,37 +10,33 @@ using namespace std;
 #define prt(x) cout << (x);
 
 int main(){
-ifstream cin("notlast.in");
-ofstream cout("notlast.out");
 ios::sync_with_stdio(0); cin.tie(0);
-    ll n;
+ll n;
     cin >> n;
-    map<string, int> mp;
+    vector<pair<string, string>> arr;
+    map<string, string> mp;
     f(i,0,n){
-        string a;int b;
+        string a, b;
         cin >> a >> b;
-        mp[a] += b;
-    }
-    int ans = INT_MAX;
-    map<int, string> mp2;
-    map<int, int> mp3;
-    for(auto it:mp){ 
-        mp2[it.second] = it.first;
-        mp3[it.second]++;
+        arr.push_back({a, b});
     }
 
-    int k = 1;
-    bool f = true;
-    for(auto it:mp2){
-        if(k==0 and mp3[it.first]==1) {
-            cout << it.second;
-            f = false;
+    for(auto it:arr){
+        mp[it.first.substr(0, 2)]=it.second;
+    }
+    ll count = 0;
+    for (auto it : mp)
+    {
+        if (mp[it.second] == it.first)
+        {
+            cout << it.first << " ";
+            count++;
         }
-            k--;
-        }
+}
 
-       if(f) cout << "Tie";
-        return 0;
+cout << count/2 << "\n";
+
+return 0;
 }
 /* stuff you should look for
 * int overflow, array bounds
