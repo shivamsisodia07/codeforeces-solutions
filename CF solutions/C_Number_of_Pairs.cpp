@@ -46,7 +46,7 @@ void solve()
             }
         }
         right = mid;
-
+        cout << right << " " << left;
         ans += right - left;
 }
 
