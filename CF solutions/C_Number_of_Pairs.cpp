@@ -10,47 +10,22 @@ using namespace std;
 #define prt(x) cout << (x);
 void solve()
 {
-    ll n, l, r;
+    int n, l, r;
     cin >> n >> l >> r;
-    vector<int> v(n,0);
-    f(i,0,n){
-        cin >> v[i];
+    vector<int> v(n);
+    for (int &e : v) {
+        cin >> e;
     }
     sort(v.begin(), v.end());
     ll ans = 0;
-    f(i, 0, n)
-    {
-        ll left,right,l = i + 1, h = n - 1, mid;
-        while (l <= h)
-        {
-            mid = l + (h - l) / 2;
-
-            if(v[mid]>=l){
-                l = mid + 1;
-            }
-            else {
-                h = mid - 1;
-            }
-        }
-        left = mid;
-        l = i + 1, h = n - 1;
-        while (l <= h)
-        {
-            mid = l + (h - l) / 2;
-
-            if(v[mid]>=l){
-                l = mid + 1;
-            }
-            else {
-                h = mid - 1;
-            }
-        }
-        right = mid;
-        cout << right << " " << left;
-        ans += right - left;
-}
-
-cout << ans;
+    for (int i = 0; i < n; i++) {
+        ans += upper_bound(v.begin(), v.end(), r - v[i]) - v.begin();
+        ans -= lower_bound(v.begin(), v.end(), l - v[i]) - v.begin();
+        
+        if (l <= 2 * v[i] && 2 * v[i] <= r) ans--;
+        
+    }
+    cout<< ans/2 << "\n";
 }
 int main(){
 ios::sync_with_stdio(0); cin.tie(0);
@@ -58,7 +33,7 @@ ll t;
 cin>>t;
 while(t--){
 solve();
-cout<<endl;
+
 }
 return 0;
 }

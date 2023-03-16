@@ -10,26 +10,21 @@ using namespace std;
 #define prt(x) cout << (x);
 void solve()
 {
-    ll n, target;
-    cin >> n >> target;
+    ll n, t;
+    cin >> n >> t;
 
-    vector<int> v(n);
-    unordered_map<int, int> mp;
+    vector<ll> arr(n);
+    map<int, int> mp;
     f(i,0,n){
-        cin >> v[i];
-        mp[v[i]]=i;
-    }
-
-    f(i,0,n){
-        if(mp.find(target-v[i])!=mp.end()){
-            if(i==mp[target-v[i]]){
-continue;
-            }
-            cout << i+1 <<" "<< mp[target - v[i]]+1;
-            return;
+        cin >> arr[i];
+         if(mp[t-arr[i]]){
+             cout << mp[t - arr[i]] << " " << i+1;
+             return;
         }
+        mp[arr[i]] = i+1;
     }
-    cout << "IMPOSSIBLE" ;
+
+    cout << "IMPOSSIBLE";
 }
 int main(){
 ios::sync_with_stdio(0); cin.tie(0);

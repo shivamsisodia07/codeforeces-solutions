@@ -8,32 +8,29 @@ using namespace std;
 #define MOD 1000000007
 #define PI  3.14159265
 #define prt(x) cout << (x);
-void solve()
-{
-    ll n, t;
-    cin >> n >> t;
 
-    vector<ll> arr(n);
-    map<int, int> mp;
-    f(i,0,n){
-        cin >> arr[i];
-         if(mp[t-arr[i]]){
-             cout << mp[t - arr[i]] << " " << i+1;
-             return;
-        }
-        mp[arr[i]] = i+1;
-    }
-
-    cout << "IMPOSSIBLE";
-}
 int main(){
 ios::sync_with_stdio(0); cin.tie(0);
 ll t;
-// cin>>t;
-t = 1;
+cin>>t;
 while(t--){
-solve();
-cout<<endl;
+    ll n, k;
+    cin >> n >> k;
+    vector<ll> v(n, 0);
+    f(i,0,n){
+        cin >> v[i];
+    }
+    int sum = 0;
+    sort(v.rbegin(), v.rend());
+    for (int i = 0; i < k;i++){
+        sum += v[k+i]/v[i];
+    }
+    for (int i = 2 * k; i < n;i++){
+        sum += v[i];
+    }
+
+        cout << sum<<"\n";
+ 
 }
 return 0;
 }
