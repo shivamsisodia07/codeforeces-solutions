@@ -10,7 +10,31 @@ using namespace std;
 #define prt(x) cout << (x);
 void solve()
 {
-    
+    ll n;
+    cin>>n;
+
+    ll a[n];
+    int oddcount=0,evencount=0;
+    f(i,0,n){
+        cin>>a[i];
+        if(a[i]%2==0){
+            evencount++;
+        }
+        else{
+            oddcount++;
+        }
+    }
+
+    if(oddcount==0){
+        prt("YES");
+    }
+    else if(oddcount%2!=0){
+        prt("NO");
+    }
+    else{
+        prt("YES");
+    }
+
 }
 int main(){
 ios::sync_with_stdio(0); cin.tie(0);
