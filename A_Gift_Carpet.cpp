@@ -10,37 +10,36 @@ using namespace std;
 #define prt(x) cout << (x);
 void solve()
 {
-    ll n;
-    cin>>n;
+    int n,m;
+    cin>>n>>m;
 
-    ll a[n],b[n];
+    vector<string>v;
 
-    f(i,0,n){
-        cin>>a[i];
+    for(int i=0;i<n;i++){
+            string a;
+            cin>>a;
+            v.push_back(a);
+        
     }
-    f(i,0,n){
-        cin>>b[i];
-    }
+    string s="vika";
+    int k=0;
 
-    vector<pair<ll,ll>>ans;
-    ll maxi=-1e8;
-    f(i,0,n){
-        ans.pb({a[i]-b[i],i+1});
-        maxi=max(maxi,a[i]-b[i]);
-    }
-    vector<int>res;
-
-    f(i,0,n){
-        if(ans[i].first==maxi){
-            res.pb(ans[i].second);
+    for(int i=0;i<m;i++){
+        for(int j=0;j<n;j++){
+            if(v[j][i]==s[k]){
+                
+                k++;
+                break;
+            }
         }
     }
-    cout<<res.size()<<"\n";
-
-    for(auto it:res){
-        cout<<it<<" ";
+    
+    if(k>=4){
+        cout<<"YES";
     }
-
+    else{
+        cout<<"NO";
+    }
 }
 int main(){
 ios::sync_with_stdio(0); cin.tie(0);
