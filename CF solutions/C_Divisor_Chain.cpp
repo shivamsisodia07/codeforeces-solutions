@@ -7,9 +7,25 @@ using namespace std;
 #define eb emplace_back
 #define MOD 1000000007
 #define PI  3.14159265
-#define prt(x) cout << (x);
+#define prt(x) cout << (x)<<"\n";
 void solve(){
+    int n;cin>>n;
 
+    vector<int>ans;
+    ans.pb(n);
+    while(__builtin_popcount(n)>1){
+        n-=(n&-n);
+        cout<<n<<" ";
+        ans.pb(n);
+    }
+
+    while(n>1){
+        ans.pb(n/2);
+        n/=2;
+    }
+
+    prt(ans.size());
+    for(auto it:ans) cout<<it<<" ";
 }
 signed main(){
    ios::sync_with_stdio(0); cin.tie(0);
